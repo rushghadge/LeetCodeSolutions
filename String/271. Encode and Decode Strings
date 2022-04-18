@@ -1,0 +1,62 @@
+public class Codec {
+
+    // Encodes a list of strings to a single string.
+    public String encode(List<String> strs) {
+        String res="";
+        StringBuffer sb= new StringBuffer();
+        //fetch each string from list and append to res 
+        for(String s:strs){
+            System.out.println("String: "+s);
+            int len=s.length();
+            // s+= String.valueOf( len)+"#"+ s;
+            //  System.out.println("Res: "+res);
+            sb.append(len);
+            sb.append("#");
+            sb.append(s);
+            
+        }
+      //convert string buff to string
+        return sb.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+    
+        // System.out.println("IN DECODE:" +s);
+        List<String> res = new ArrayList<>();
+        int i = 0;
+        //Check length of entire string
+        // System.out.println("len "+s.length());
+        //iterate every char of string
+        while(i < s.length()){
+          // System.out.println(" s.charAt(i) " + s.charAt(i));
+        //get a pointer to move until #
+            int j=i;
+            while(s.charAt(j)!= '#'){
+                j++;
+            }
+          //fetch lenght from i to one character behind # > thus use s.substring(i, j)
+            String l=s.substring(i,j);
+        // System.out.println("(s.substring(i,j) :"+s.substring(i,j));
+          //convert length from string to int
+            int len= Integer.parseInt(l);
+            
+           // System.out.println("j: "+s.charAt(j)+"j : "+j+"len: "+len);
+            // System.out.println("s.substring(j+1,len) "+ s.substring(j+1,len+j+1));
+            //add values to result ( from nect char to # till len+j+1 (until next len))
+            res.add(s.substring(j+1,len+j+1));
+            //increment i to next value where we stored starting point of length
+            i=len+j+1;
+             // System.out.println("END i : "+i);
+
+            // System.out.println("Final res: "+res);
+        }
+        
+        return res;
+    }
+   
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(strs));
