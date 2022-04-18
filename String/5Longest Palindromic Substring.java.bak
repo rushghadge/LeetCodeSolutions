@@ -22,8 +22,6 @@ private void extendPalindrome(String s, int j, int k) {
 		k++;
 	}
     System.out.println("After while loop j "+j +" , k "+k);
-	//Since we are out of loop and lets say j = -1 , then to find start of valid palindrom, 
-	//it is valid until j=0, this we set lo to j+1 below
 	if (maxLen < k - j - 1) { //if the length of the current palindrome (k - j - 1) is greater than the previous longest palindrome
         System.out.println("In if ");
 		lo = j + 1; //store the beginning index of the palindrome
